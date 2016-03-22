@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
+   <task-flow-descriptor path="META-INF/adfc-config.xml" id="" type="" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/NewEmpMgmtTF.xml" id="NewEmpMgmtTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/SearchTF.xml" id="SearchTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/empls-flow.xml" id="empls-flow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/view/dashboard/dashboard.xml" id="dashboard" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/view/organizations/organizations.xml" id="organizations" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="Origin"/>
+      <input-parameter name="SummaryView"/>
+      <input-parameter name="RowKeyId"/>
+      <input-parameter name="TileRequested"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/view/people/people.xml" id="people" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="Origin"/>
+      <input-parameter name="fromDashboard"/>
+      <input-parameter name="RowKeyID"/>
+      <input-parameter name="fromOrganization"/>
+      <input-parameter name="fromDashboardTileRequest"/>
+   </task-flow-descriptor>
+</task-flow-registry>

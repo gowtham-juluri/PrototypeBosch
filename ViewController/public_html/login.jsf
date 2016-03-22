@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+<af:resource type="css"><style>
+			
+			html, body {
+			  height: 100%;
+			  width: 100%;
+			  padding: 0;
+			  margin: 0;
+			}
+
+			#full-screen-background-image {
+			  z-index: -999;
+			  min-height: 100%;
+			  min-width: 1024px;
+			  width: 100%;
+			  height: auto;
+			  position: fixed;
+			  top: 0;
+			  left: 0;
+			  
+			}
+			.topRight{
+				background: url(Bosch_Background_Blur.png) no-repeat fixed;
+			}
+			.bottomRight{
+				background: url(Bosch_Background_Blur.png) no-repeat fixed;
+			}
+			
+		</style>lo</af:resource>
+    <af:document title="login.jsf" id="d1">
+        <af:form id="f1" inlineStyle='background-image:url("resources/images/Bosch_Background.jpg");'>
+            <af:image source="/resources/images/Bosch_Background.jpg" shortDesc="bck" id="i1" styleClass="full-screen-background-image"/>
+        </af:form>
+    </af:document>
+</f:view>

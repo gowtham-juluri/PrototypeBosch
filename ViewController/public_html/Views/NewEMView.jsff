@@ -1,0 +1,675 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelSplitter id="ps1" splitterPosition="250">
+        <f:facet name="first">
+            <af:decorativeBox id="db1">
+                <f:facet name="top"/>
+                <f:facet name="center">
+                    <af:panelGridLayout id="pgl2">
+                        <af:gridRow marginTop="5px" height="auto" id="gr4">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc4"/>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr5">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc5" valign="stretch"
+                                         halign="stretch">
+                                <af:panelBox text="Locations" id="pb3" showHeader="never">
+                                    <f:facet name="toolbar"/>
+                                    <af:tree value="#{bindings.RegionsView.treeModel}" var="node"
+                                             selectionListener="#{BB_CRUD.selectionListner1}"
+                                             rowSelection="single" id="t1">
+                                        <f:facet name="nodeStamp">
+                                            <af:outputText value="#{node}" id="ot1"/>
+                                        </f:facet>
+                                    </af:tree>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
+                </f:facet>
+            </af:decorativeBox>
+        </f:facet>
+        <f:facet name="second">
+            <af:decorativeBox id="db2">
+                <f:facet name="top"/>
+                <f:facet name="center">
+                    <af:panelGridLayout id="pgl1">
+                    
+                        <!--Dept Table-->
+                        <af:gridRow marginTop="5px" height="auto" id="gr2">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc2" halign="stretch">
+                                <af:panelBox text="Departments" id="pb1" showDisclosure="false">
+                                    <af:panelCollection id="pc3">
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t7">
+                                                <af:button text="Add Department" id="b8"
+                                                           action="#{BB_CRUD.onDeptRowCreate}"/>
+                                                <af:button actionListener="#{bindings.Commit.execute}" text="Save"
+                                                           id="b9"/>
+                                                <af:button actionListener="#{bindings.Rollback.execute}" text="Cancel"
+                                                           immediate="true"
+                                                           id="b10" targetFrame="_self">
+                                                    <af:resetActionListener/>
+                                                </af:button>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <af:table id="md2" rows="#{bindings.DepartmentsEO22View1.rangeSize}"
+                                                  fetchSize="#{bindings.DepartmentsEO22View1.rangeSize}"
+                                                  emptyText="#{bindings.DepartmentsEO22View1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  var="row" value="#{bindings.DepartmentsEO22View1.collectionModel}"
+                                                  rowBandingInterval="1"
+                                                  selectedRowKeys="#{bindings.DepartmentsEO22View1.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.DepartmentsEO22View1.collectionModel.makeCurrent}"
+                                                  rowSelection="single" binding="#{BB_CRUD.empDataTble}"
+                                                  scrollPolicy="page" editingMode="editAll"
+                                                  columnBandingInterval="0">
+                                            <af:column headerText="#{bindings.DepartmentsEO22View1.hints.DepartmentId.label}"
+                                                       sortProperty="#{bindings.DepartmentsEO22View1.hints.DepartmentId.name}"
+                                                       sortable="true" id="c1">
+                                                <af:inputText value="#{row.bindings.DepartmentId.inputValue}"
+                                                              label="#{bindings.DepartmentsEO22View1.hints.DepartmentId.label}"
+                                                              required="#{bindings.DepartmentsEO22View1.hints.DepartmentId.mandatory}"
+                                                              columns="#{bindings.DepartmentsEO22View1.hints.DepartmentId.displayWidth}"
+                                                              maximumLength="#{bindings.DepartmentsEO22View1.hints.DepartmentId.precision}"
+                                                              shortDesc="#{bindings.DepartmentsEO22View1.hints.DepartmentId.tooltip}"
+                                                              id="it10">
+                                                    <f:validator binding="#{row.bindings.DepartmentId.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.DepartmentsEO22View1.hints.DepartmentId.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.DepartmentsEO22View1.hints.DepartmentName.label}"
+                                                       sortProperty="#{bindings.DepartmentsEO22View1.hints.DepartmentName.name}"
+                                                       sortable="true" id="c2">
+                                                <af:inputText value="#{row.bindings.DepartmentName.inputValue}"
+                                                              label="#{bindings.DepartmentsEO22View1.hints.DepartmentName.label}"
+                                                              required="#{bindings.DepartmentsEO22View1.hints.DepartmentName.mandatory}"
+                                                              columns="#{bindings.DepartmentsEO22View1.hints.DepartmentName.displayWidth}"
+                                                              maximumLength="#{bindings.DepartmentsEO22View1.hints.DepartmentName.precision}"
+                                                              shortDesc="#{bindings.DepartmentsEO22View1.hints.DepartmentName.tooltip}"
+                                                              id="it12">
+                                                    <f:validator binding="#{row.bindings.DepartmentName.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.DepartmentsEO22View1.hints.ManagerId.label}"
+                                                       sortProperty="#{bindings.DepartmentsEO22View1.hints.ManagerId.name}"
+                                                       sortable="true" id="c3">
+                                                <af:inputText value="#{row.bindings.ManagerId.inputValue}"
+                                                              label="#{bindings.DepartmentsEO22View1.hints.ManagerId.label}"
+                                                              required="#{bindings.DepartmentsEO22View1.hints.ManagerId.mandatory}"
+                                                              columns="#{bindings.DepartmentsEO22View1.hints.ManagerId.displayWidth}"
+                                                              maximumLength="#{bindings.DepartmentsEO22View1.hints.ManagerId.precision}"
+                                                              shortDesc="#{bindings.DepartmentsEO22View1.hints.ManagerId.tooltip}"
+                                                              id="it4">
+                                                    <f:validator binding="#{row.bindings.ManagerId.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.DepartmentsEO22View1.hints.ManagerId.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <!--af:column headerText="#{bindings.DepartmentsEO22View1.hints.LocationId.label}"
+                                                       sortProperty="#{bindings.DepartmentsEO22View1.hints.LocationId.name}"
+                                                       sortable="true" id="c4">
+                                                <af:selectOneChoice value="#{row.bindings.LocationId.inputValue}"
+                                                              label="#{bindings.DepartmentsEO22View1.hints.LocationId.label}"
+                                                              required="#{bindings.DepartmentsEO22View1.hints.LocationId.mandatory}"
+                                                              columns="#{bindings.DepartmentsEO22View1.hints.LocationId.displayWidth}"
+                                                              maximumLength="#{bindings.DepartmentsEO22View1.hints.LocationId.precision}"
+                                                              shortDesc="#{bindings.DepartmentsEO22View1.hints.LocationId.tooltip}"
+                                                              id="it9">
+                                                    <f:validator binding="#{row.bindings.LocationId.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.DepartmentsEO22View1.hints.LocationId.format}"/>
+                                                </af:selectOneChoice>
+                                            </af:column-->
+                                            <af:column headerText="#{bindings.DepartmentsEO22View1.hints.LocationId.label}"
+                                                       id="c14">
+                                                <af:inputListOfValues id="locationIdId"
+                                                                      popupTitle="Search and Select: #{bindings.DepartmentsEO22View1.hints.LocationId.label}"
+                                                                      value="#{row.bindings.LocationId.inputValue}"
+                                                                      model="#{row.bindings.LocationId.listOfValuesModel}"
+                                                                      required="#{bindings.DepartmentsEO22View1.hints.LocationId.mandatory}"
+                                                                      columns="#{bindings.DepartmentsEO22View1.hints.LocationId.displayWidth}"
+                                                                      shortDesc="#{bindings.DepartmentsEO22View1.hints.LocationId.tooltip}">
+                                                    <f:validator binding="#{row.bindings.LocationId.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.DepartmentsEO22View1.hints.LocationId.format}"/>
+                                                </af:inputListOfValues>
+                                            </af:column>
+                                            <!--af:selectOneChoice value="#{bindings.LocationId.inputValue}"
+                                                                    label="#{bindings.LocationId.label}"
+                                                                    required="#{bindings.LocationId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.LocationId.hints.tooltip}"
+                                                                    id="soc11">
+                                                    <f:selectItems value="#{bindings.LocationId.items}" id="si11"/>
+                                                    <f:validator binding="#{bindings.LocationId.validator}"/>
+                                                </af:selectOneChoice-->
+                                        </af:table>
+                                    </af:panelCollection>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <!--Emp, Job Table-->
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc3" halign="stretch">
+                                <af:panelBox text="Employees" id="pb2" showDisclosure="false" partialTriggers="pc1">
+                                    <af:panelCollection id="pc1" inlineStyle="width:inherit; height:inherit;"
+                                                        binding="#{BB_CRUD.panCol}">
+                                        <f:facet name="menus"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t4">
+                                                <af:inputText label="Rows" id="it9" autoSubmit="true"
+                                                              valueChangeListener="#{BB_CRUD.changeRangeSize}"
+                                                              value="20" contentStyle="width:35px;"/>
+                                                <af:spacer width="10" height="10" id="s1"/>
+                                                <af:button text="Add Employee" id="b1" useWindow="true"
+                                                           actionListener="#{BB_CRUD.addAction}"/>
+                                                <af:button actionListener="#{bindings.Commit.execute}" text="Commit"
+                                                           id="b3" inlineStyle="display: none;"/>
+                                                <af:button text="Export to Excel" id="b5">
+                                                    <af:exportCollectionActionListener type="excelHTML" exportedId="t2"
+                                                                                       filename="EmployeeList.xls"
+                                                                                       title="EmployeeList"/>
+                                                </af:button>
+                                                <af:button text="Export to CSV" id="b6">
+                                                    <af:exportCollectionActionListener type="CSV" exportedId="t2"
+                                                                                       filename="EmployeeList.csv"
+                                                                                       title="EmployeeList"/>
+                                                </af:button>
+                                            </af:toolbar>
+                                        </f:facet>
+                                        <f:facet name="statusbar"/>
+                                        <af:table rows="#{bindings.EmployeesEO22View3.rangeSize}"
+                                                  emptyText="#{bindings.EmployeesEO22View3.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                  var="row" value="#{bindings.EmployeesEO22View3.collectionModel}"
+                                                  rowBandingInterval="1"
+                                                  selectedRowKeys="#{bindings.EmployeesEO22View3.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.EmployeesEO22View3.collectionModel.makeCurrent}"
+                                                  rowSelection="single" id="t2" binding="#{BB_CRUD.empTble}"
+                                                  contentDelivery="immediate" scrollPolicy="page"
+                                                  fetchSize="#{bindings.EmployeesEO22View3.rangeSize}">
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.EmployeeId.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.EmployeeId.name}"
+                                                       sortable="false" id="c5">
+                                                <af:outputText value="#{row.EmployeeId}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.EmployeeId.tooltip}"
+                                                               id="ot10">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.EmployeesEO22View3.hints.EmployeeId.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.FirstName.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.FirstName.name}"
+                                                       sortable="false" id="c6">
+                                                <af:outputText value="#{row.FirstName}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.FirstName.tooltip}"
+                                                               id="ot11"/>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.LastName.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.LastName.name}"
+                                                       sortable="false" id="c7">
+                                                <af:outputText value="#{row.LastName}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.LastName.tooltip}"
+                                                               id="ot12"/>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.Email.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.Email.name}"
+                                                       sortable="false" id="c8">
+                                                <af:outputText value="#{row.Email}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.Email.tooltip}"
+                                                               id="ot13"/>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.PhoneNumber.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.PhoneNumber.name}"
+                                                       sortable="false" id="c9">
+                                                <af:outputText value="#{row.PhoneNumber}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.PhoneNumber.tooltip}"
+                                                               id="ot23"/>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.HireDate.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.HireDate.name}"
+                                                       sortable="false" id="c10">
+                                                <af:outputText value="#{row.HireDate}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.HireDate.tooltip}"
+                                                               id="ot24">
+                                                    <af:convertDateTime pattern="#{bindings.EmployeesEO22View3.hints.HireDate.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.JobId.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.JobId.name}"
+                                                       sortable="false" id="c11">
+                                                <af:outputText value="#{row.JobId}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.JobId.tooltip}"
+                                                               id="ot25"/>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.Salary.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.Salary.name}"
+                                                       sortable="false" id="c12">
+                                                <af:outputText value="#{row.Salary}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.Salary.tooltip}"
+                                                               id="ot26">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.EmployeesEO22View3.hints.Salary.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.CommissionPct.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.CommissionPct.name}"
+                                                       sortable="false" id="c29">
+                                                <af:outputText value="#{row.CommissionPct}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.CommissionPct.tooltip}"
+                                                               id="ot27">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.EmployeesEO22View3.hints.CommissionPct.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.ManagerId.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.ManagerId.name}"
+                                                       sortable="false" id="c30">
+                                                <af:outputText value="#{row.ManagerId}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.ManagerId.tooltip}"
+                                                               id="ot28">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.EmployeesEO22View3.hints.ManagerId.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.EmployeesEO22View3.hints.DepartmentId.label}"
+                                                       sortProperty="#{bindings.EmployeesEO22View3.hints.DepartmentId.name}"
+                                                       sortable="false" id="c31">
+                                                <af:outputText value="#{row.DepartmentId}"
+                                                               shortDesc="#{bindings.EmployeesEO22View3.hints.DepartmentId.tooltip}"
+                                                               id="ot29">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.EmployeesEO22View3.hints.DepartmentId.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column id="c13" width="auto" minimumWidth="12" align="center"
+                                                       sortable="true" headerText="">
+                                                <!--Edit button-->
+                                                <af:button id="b22" useWindow="true"
+                                                           actionListener="#{BB_CRUD.editActionListner}"
+                                                           iconPosition="leading"
+                                                           inlineStyle="float: left; margin-right: 2px;"
+                                                           icon="#{resource['images:Edit.png']}">
+                                                    <af:setActionListener from="#{row.EmployeeId}"
+                                                                          to="#{pageFlowScope.employeeID}"/>
+                                                </af:button>
+                                                <!--Delete button-->
+                                                <af:button id="b2"
+                                                           inlineStyle="float: left; margin-right: 2px;"
+                                                           icon="#{resource['images:delete.png']}">
+                                                    <af:showPopupBehavior popupId="DELETE_P"/>
+                                                </af:button>
+                                                <!--Delete Popup-->
+                                                <af:popup childCreation="deferred" autoCancel="disabled" id="DELETE_P"
+                                                          contentDelivery="lazyUncached">
+                                                    <af:dialog id="d1" title="Delete Employee"
+                                                               dialogListener="#{BB_CRUD.DeleteDialogListener}">
+                                                        <f:facet name="buttonBar"/>
+                                                        <af:panelFormLayout id="pfl4">
+                                                            <f:facet name="footer"/>
+                                                            <af:outputText value="Are you sure you want to delete?"
+                                                                           id="ot14"/>
+                                                        </af:panelFormLayout>
+                                                    </af:dialog>
+                                                </af:popup>
+                                                <!--Duplicate Button-->
+                                                <af:button id="b4"
+                                                           inlineStyle="float: left; margin-right: 2px;"
+                                                           actionListener="#{BB_CRUD.DuplicateActListnr}"
+                                                           rendered="false" icon="#{resource['images:Duplicate.png']}">
+                                                    <af:setActionListener from="#{row.EmployeeId}"
+                                                                          to="#{pageFlowScope.EmplID}"/>
+                                                    <af:setActionListener from="#{row.FirstName}"
+                                                                          to="#{pageFlowScope.FirstName}"/>
+                                                </af:button>
+                                            </af:column>
+                                        </af:table>
+                                    </af:panelCollection>
+                                    <!--Edit Popup-->
+                                    <af:popup id="p1" contentDelivery="immediate"
+                                              popupCanceledListener="#{BB_CRUD.editPopupCancelListener}"
+                                              binding="#{BB_CRUD.editPopup}">
+                                        <af:dialog id="d2" type="okCancel" title="Edit" resize="off"
+                                                   dialogListener="#{BB_CRUD.editDialogListener}" contentWidth="500"
+                                                   contentHeight="500">
+                                            <af:panelFormLayout id="pfl3">
+                                                <af:inputText value="#{bindings.EmployeeId.inputValue}"
+                                                              label="#{bindings.EmployeeId.hints.label}"
+                                                              required="#{bindings.EmployeeId.hints.mandatory}"
+                                                              columns="#{bindings.EmployeeId.hints.displayWidth}"
+                                                              maximumLength="#{bindings.EmployeeId.hints.precision}"
+                                                              shortDesc="#{bindings.EmployeeId.hints.tooltip}" id="it1">
+                                                    <f:validator binding="#{bindings.EmployeeId.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.EmployeeId.format}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.FirstName.inputValue}"
+                                                              label="#{bindings.FirstName.hints.label}"
+                                                              required="#{bindings.FirstName.hints.mandatory}"
+                                                              columns="#{bindings.FirstName.hints.displayWidth}"
+                                                              maximumLength="#{bindings.FirstName.hints.precision}"
+                                                              shortDesc="#{bindings.FirstName.hints.tooltip}" id="it2">
+                                                    <f:validator binding="#{bindings.FirstName.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.LastName.inputValue}"
+                                                              label="#{bindings.LastName.hints.label}"
+                                                              required="#{bindings.LastName.hints.mandatory}"
+                                                              columns="#{bindings.LastName.hints.displayWidth}"
+                                                              maximumLength="#{bindings.LastName.hints.precision}"
+                                                              shortDesc="#{bindings.LastName.hints.tooltip}" id="it3">
+                                                    <f:validator binding="#{bindings.LastName.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Email.inputValue}"
+                                                              label="#{bindings.Email.hints.label}"
+                                                              required="#{bindings.Email.hints.mandatory}"
+                                                              columns="#{bindings.Email.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Email.hints.precision}"
+                                                              shortDesc="#{bindings.Email.hints.tooltip}" id="it5">
+                                                    <f:validator binding="#{bindings.Email.validator}"/>
+                                                </af:inputText>
+                                                <af:inputDate value="#{bindings.HireDate.inputValue}"
+                                                              label="#{bindings.HireDate.hints.label}"
+                                                              required="#{bindings.HireDate.hints.mandatory}"
+                                                              columns="#{bindings.HireDate.hints.displayWidth}"
+                                                              shortDesc="#{bindings.HireDate.hints.tooltip}" id="id1">
+                                                    <f:validator binding="#{bindings.HireDate.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.HireDate.format}"/>
+                                                </af:inputDate>
+                                                <af:inputListOfValues id="jobIdId"
+                                                                      popupTitle="Search and Select: #{bindings.JobId.hints.label}"
+                                                                      value="#{bindings.JobId.inputValue}"
+                                                                      label="#{bindings.JobId.hints.label}"
+                                                                      model="#{bindings.JobId.listOfValuesModel}"
+                                                                      required="#{bindings.JobId.hints.mandatory}"
+                                                                      columns="#{bindings.JobId.hints.displayWidth}"
+                                                                      shortDesc="#{bindings.JobId.hints.tooltip}">
+                                                    <f:validator binding="#{bindings.JobId.validator}"/>
+                                                </af:inputListOfValues>
+                                                <af:inputText value="#{bindings.PhoneNumber.inputValue}"
+                                                              label="#{bindings.PhoneNumber.hints.label}"
+                                                              required="#{bindings.PhoneNumber.hints.mandatory}"
+                                                              columns="#{bindings.PhoneNumber.hints.displayWidth}"
+                                                              maximumLength="#{bindings.PhoneNumber.hints.precision}"
+                                                              shortDesc="#{bindings.PhoneNumber.hints.tooltip}" id="it6"
+                                                              visible="#{Show_Hide.xyz == 'unHide' ? true : false}"
+                                                              partialTriggers="b7">
+                                                    <f:validator binding="#{bindings.PhoneNumber.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Salary.inputValue}"
+                                                              label="#{bindings.Salary.hints.label}"
+                                                              required="#{bindings.Salary.hints.mandatory}"
+                                                              columns="#{bindings.Salary.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Salary.hints.precision}"
+                                                              shortDesc="#{bindings.Salary.hints.tooltip}" id="it7"
+                                                              visible="#{Show_Hide.xyz == 'unHide' ? true : false}"
+                                                              partialTriggers="b7">
+                                                    <f:validator binding="#{bindings.Salary.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.Salary.format}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.CommissionPct.inputValue}"
+                                                              label="#{bindings.CommissionPct.hints.label}"
+                                                              required="#{bindings.CommissionPct.hints.mandatory}"
+                                                              columns="#{bindings.CommissionPct.hints.displayWidth}"
+                                                              maximumLength="#{bindings.CommissionPct.hints.precision}"
+                                                              shortDesc="#{bindings.CommissionPct.hints.tooltip}"
+                                                              id="it8" rendered="true"
+                                                              visible="#{Show_Hide.xyz == 'unHide' ? true : false}"
+                                                              partialTriggers="b7">
+                                                    <f:validator binding="#{bindings.CommissionPct.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CommissionPct.format}"/>
+                                                </af:inputText>
+                                                <af:selectOneChoice value="#{bindings.ManagerId.inputValue}"
+                                                                    label="#{bindings.ManagerId.label}"
+                                                                    required="#{bindings.ManagerId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.ManagerId.hints.tooltip}"
+                                                                    id="soc2" partialTriggers="b7"
+                                                                    visible="#{Show_Hide.xyz == 'unHide' ? true : false}">
+                                                    <f:selectItems value="#{bindings.ManagerId.items}" id="si2"/>
+                                                    <f:validator binding="#{bindings.ManagerId.validator}"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice value="#{bindings.DepartmentId.inputValue}"
+                                                                    label="#{bindings.DepartmentId.label}"
+                                                                    required="#{bindings.DepartmentId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.DepartmentId.hints.tooltip}"
+                                                                    id="soc3" partialTriggers="b7"
+                                                                    visible="#{Show_Hide.xyz == 'unHide' ? true : false}">
+                                                    <f:selectItems value="#{bindings.DepartmentId.items}" id="si3"/>
+                                                    <f:validator binding="#{bindings.DepartmentId.validator}"/>
+                                                </af:selectOneChoice>
+                                                <af:button text="Show/Hide" id="b7"
+                                                           action="#{Show_Hide.ShowHide_action}"/>
+                                            </af:panelFormLayout>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <!--Add Popup-->
+                                    <af:popup id="p12" contentDelivery="immediate"
+                                              popupCanceledListener="#{BB_CRUD.editPopupCancelListener}"
+                                              binding="#{BB_CRUD.addPopup}">
+                                        <af:dialog id="d22" type="okCancel" title="Add" resize="off"
+                                                   dialogListener="#{BB_CRUD.editDialogListener}" contentWidth="500"
+                                                   contentHeight="500">
+                                            <af:panelFormLayout id="pfl32">
+                                                <af:inputText value="#{bindings.EmployeeId.inputValue}"
+                                                              label="#{bindings.EmployeeId.hints.label}"
+                                                              required="#{bindings.EmployeeId.hints.mandatory}"
+                                                              columns="#{bindings.EmployeeId.hints.displayWidth}"
+                                                              maximumLength="#{bindings.EmployeeId.hints.precision}"
+                                                              shortDesc="#{bindings.EmployeeId.hints.tooltip}"
+                                                              id="it122">
+                                                    <f:validator binding="#{bindings.EmployeeId.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.EmployeeId.format}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.FirstName.inputValue}"
+                                                              label="#{bindings.FirstName.hints.label}"
+                                                              required="#{bindings.FirstName.hints.mandatory}"
+                                                              columns="#{bindings.FirstName.hints.displayWidth}"
+                                                              maximumLength="#{bindings.FirstName.hints.precision}"
+                                                              shortDesc="#{bindings.FirstName.hints.tooltip}" id="it22">
+                                                    <f:validator binding="#{bindings.FirstName.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.LastName.inputValue}"
+                                                              label="#{bindings.LastName.hints.label}"
+                                                              required="#{bindings.LastName.hints.mandatory}"
+                                                              columns="#{bindings.LastName.hints.displayWidth}"
+                                                              maximumLength="#{bindings.LastName.hints.precision}"
+                                                              shortDesc="#{bindings.LastName.hints.tooltip}" id="it32">
+                                                    <f:validator binding="#{bindings.LastName.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Email.inputValue}"
+                                                              label="#{bindings.Email.hints.label}"
+                                                              required="#{bindings.Email.hints.mandatory}"
+                                                              columns="#{bindings.Email.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Email.hints.precision}"
+                                                              shortDesc="#{bindings.Email.hints.tooltip}" id="it52">
+                                                    <f:validator binding="#{bindings.Email.validator}"/>
+                                                </af:inputText>
+                                                <af:inputDate value="#{bindings.HireDate.inputValue}"
+                                                              label="#{bindings.HireDate.hints.label}"
+                                                              required="#{bindings.HireDate.hints.mandatory}"
+                                                              columns="#{bindings.HireDate.hints.displayWidth}"
+                                                              shortDesc="#{bindings.HireDate.hints.tooltip}" id="id12">
+                                                    <f:validator binding="#{bindings.HireDate.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.HireDate.format}"/>
+                                                </af:inputDate>
+                                                <!--<af:selectOneChoice value="#{bindings.JobId.inputValue}" label="#{bindings.JobId.label}" required="#{bindings.JobId.hints.mandatory}" shortDesc="#{bindings.JobId.hints.tooltip}" id="soc122"> <f:selectItems value="#{bindings.JobId.items}" id="si12"/> <f:validator binding="#{bindings.JobId.validator}"/> </af:selectOneChoice>-->
+                                                <af:inputListOfValues id="jobId1Id"
+                                                                      popupTitle="Search and Select: #{bindings.JobId.hints.label}"
+                                                                      value="#{bindings.JobId.inputValue}"
+                                                                      label="#{bindings.JobId.hints.label}"
+                                                                      model="#{bindings.JobId.listOfValuesModel}"
+                                                                      required="#{bindings.JobId.hints.mandatory}"
+                                                                      columns="#{bindings.JobId.hints.displayWidth}"
+                                                                      shortDesc="#{bindings.JobId.hints.tooltip}">
+                                                    <f:validator binding="#{bindings.JobId.validator}"/>
+                                                </af:inputListOfValues>
+                                                <af:inputText value="#{bindings.PhoneNumber.inputValue}"
+                                                              label="#{bindings.PhoneNumber.hints.label}"
+                                                              required="#{bindings.PhoneNumber.hints.mandatory}"
+                                                              columns="#{bindings.PhoneNumber.hints.displayWidth}"
+                                                              maximumLength="#{bindings.PhoneNumber.hints.precision}"
+                                                              shortDesc="#{bindings.PhoneNumber.hints.tooltip}"
+                                                              id="it62">
+                                                    <f:validator binding="#{bindings.PhoneNumber.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Salary.inputValue}"
+                                                              label="#{bindings.Salary.hints.label}"
+                                                              required="#{bindings.Salary.hints.mandatory}"
+                                                              columns="#{bindings.Salary.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Salary.hints.precision}"
+                                                              shortDesc="#{bindings.Salary.hints.tooltip}" id="it72">
+                                                    <f:validator binding="#{bindings.Salary.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.Salary.format}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.CommissionPct.inputValue}"
+                                                              label="#{bindings.CommissionPct.hints.label}"
+                                                              required="#{bindings.CommissionPct.hints.mandatory}"
+                                                              columns="#{bindings.CommissionPct.hints.displayWidth}"
+                                                              maximumLength="#{bindings.CommissionPct.hints.precision}"
+                                                              shortDesc="#{bindings.CommissionPct.hints.tooltip}"
+                                                              id="it82" rendered="true"
+                                                              visible="#{Show_Hide.xyz == 'unHide' ? true : false}">
+                                                    <f:validator binding="#{bindings.CommissionPct.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CommissionPct.format}"/>
+                                                </af:inputText>
+                                                <af:selectOneChoice value="#{bindings.ManagerId.inputValue}"
+                                                                    label="#{bindings.ManagerId.label}"
+                                                                    required="#{bindings.ManagerId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.ManagerId.hints.tooltip}"
+                                                                    id="soc22">
+                                                    <f:selectItems value="#{bindings.ManagerId.items}" id="si22"/>
+                                                    <f:validator binding="#{bindings.ManagerId.validator}"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice value="#{bindings.DepartmentId.inputValue}"
+                                                                    label="#{bindings.DepartmentId.label}"
+                                                                    required="#{bindings.DepartmentId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.DepartmentId.hints.tooltip}"
+                                                                    id="soc32">
+                                                    <f:selectItems value="#{bindings.DepartmentId.items}" id="si32"/>
+                                                    <f:validator binding="#{bindings.DepartmentId.validator}"/>
+                                                </af:selectOneChoice>
+                                            </af:panelFormLayout>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <!--Duplicate Popup-->
+                                    <af:popup id="duplicatePopup" contentDelivery="lazyUncached"
+                                              popupCanceledListener="#{BB_CRUD.editPopupCancelListener}"
+                                              binding="#{BB_CRUD.duplicatePopup}">
+                                        <af:dialog id="Dd2" type="okCancel" title="Duplicate" resize="off"
+                                                   dialogListener="#{BB_CRUD.duplicateDialogListener}"
+                                                   contentWidth="500" contentHeight="500">
+                                            <af:panelFormLayout id="pfl332">
+                                                <af:inputText value="#{bindings.EmployeeId.inputValue}"
+                                                              label="#{bindings.EmployeeId.hints.label}"
+                                                              required="#{bindings.EmployeeId.hints.mandatory}"
+                                                              columns="#{bindings.EmployeeId.hints.displayWidth}"
+                                                              maximumLength="#{bindings.EmployeeId.hints.precision}"
+                                                              shortDesc="#{bindings.EmployeeId.hints.tooltip}" id="it11"
+                                                              binding="#{BB_CRUD.dupliInpu}">
+                                                    <f:validator binding="#{bindings.EmployeeId.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.EmployeeId.format}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.FirstName.inputValue}"
+                                                              label="#{bindings.FirstName.hints.label}"
+                                                              required="#{bindings.FirstName.hints.mandatory}"
+                                                              columns="#{bindings.FirstName.hints.displayWidth}"
+                                                              maximumLength="#{bindings.FirstName.hints.precision}"
+                                                              shortDesc="#{bindings.FirstName.hints.tooltip}" id="it21">
+                                                    <f:validator binding="#{bindings.FirstName.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.LastName.inputValue}"
+                                                              label="#{bindings.LastName.hints.label}"
+                                                              required="#{bindings.LastName.hints.mandatory}"
+                                                              columns="#{bindings.LastName.hints.displayWidth}"
+                                                              maximumLength="#{bindings.LastName.hints.precision}"
+                                                              shortDesc="#{bindings.LastName.hints.tooltip}" id="it31">
+                                                    <f:validator binding="#{bindings.LastName.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Email.inputValue}"
+                                                              label="#{bindings.Email.hints.label}"
+                                                              required="#{bindings.Email.hints.mandatory}"
+                                                              columns="#{bindings.Email.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Email.hints.precision}"
+                                                              shortDesc="#{bindings.Email.hints.tooltip}" id="it51">
+                                                    <f:validator binding="#{bindings.Email.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.PhoneNumber.inputValue}"
+                                                              label="#{bindings.PhoneNumber.hints.label}"
+                                                              required="#{bindings.PhoneNumber.hints.mandatory}"
+                                                              columns="#{bindings.PhoneNumber.hints.displayWidth}"
+                                                              maximumLength="#{bindings.PhoneNumber.hints.precision}"
+                                                              shortDesc="#{bindings.PhoneNumber.hints.tooltip}"
+                                                              id="it61">
+                                                    <f:validator binding="#{bindings.PhoneNumber.validator}"/>
+                                                </af:inputText>
+                                                <af:inputDate value="#{bindings.HireDate.inputValue}"
+                                                              label="#{bindings.HireDate.hints.label}"
+                                                              required="#{bindings.HireDate.hints.mandatory}"
+                                                              columns="#{bindings.HireDate.hints.displayWidth}"
+                                                              shortDesc="#{bindings.HireDate.hints.tooltip}" id="id11">
+                                                    <f:validator binding="#{bindings.HireDate.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.HireDate.format}"/>
+                                                </af:inputDate>
+                                                <af:selectOneChoice value="#{bindings.JobId.inputValue}"
+                                                                    label="#{bindings.JobId.label}"
+                                                                    required="#{bindings.JobId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.JobId.hints.tooltip}"
+                                                                    id="soc115">
+                                                    <f:selectItems value="#{bindings.JobId.items}" id="si511"/>
+                                                    <f:validator binding="#{bindings.JobId.validator}"/>
+                                                </af:selectOneChoice>
+                                                <af:inputText value="#{bindings.Salary.inputValue}"
+                                                              label="#{bindings.Salary.hints.label}"
+                                                              required="#{bindings.Salary.hints.mandatory}"
+                                                              columns="#{bindings.Salary.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Salary.hints.precision}"
+                                                              shortDesc="#{bindings.Salary.hints.tooltip}" id="it71">
+                                                    <f:validator binding="#{bindings.Salary.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.Salary.format}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.CommissionPct.inputValue}"
+                                                              label="#{bindings.CommissionPct.hints.label}"
+                                                              required="#{bindings.CommissionPct.hints.mandatory}"
+                                                              columns="#{bindings.CommissionPct.hints.displayWidth}"
+                                                              maximumLength="#{bindings.CommissionPct.hints.precision}"
+                                                              shortDesc="#{bindings.CommissionPct.hints.tooltip}"
+                                                              id="it81">
+                                                    <f:validator binding="#{bindings.CommissionPct.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CommissionPct.format}"/>
+                                                </af:inputText>
+                                                <af:selectOneChoice value="#{bindings.ManagerId.inputValue}"
+                                                                    label="#{bindings.ManagerId.label}"
+                                                                    required="#{bindings.ManagerId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.ManagerId.hints.tooltip}"
+                                                                    id="soc12">
+                                                    <f:selectItems value="#{bindings.ManagerId.items}" id="si21"/>
+                                                    <f:validator binding="#{bindings.ManagerId.validator}"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice value="#{bindings.DepartmentId.inputValue}"
+                                                                    label="#{bindings.DepartmentId.label}"
+                                                                    required="#{bindings.DepartmentId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.DepartmentId.hints.tooltip}"
+                                                                    id="so1c3">
+                                                    <f:selectItems value="#{bindings.DepartmentId.items}" id="si31"/>
+                                                    <f:validator binding="#{bindings.DepartmentId.validator}"/>
+                                                </af:selectOneChoice>
+                                            </af:panelFormLayout>
+                                        </af:dialog>
+                                    </af:popup>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
+                </f:facet>
+            </af:decorativeBox>
+            
+        </f:facet>
+    </af:panelSplitter>
+    <!--oracle-jdev-comment:preferred-managed-bean-name:Show_Hide-->
+</ui:composition>

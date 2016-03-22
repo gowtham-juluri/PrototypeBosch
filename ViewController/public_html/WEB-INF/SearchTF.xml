@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="SearchTF">
+    <default-activity>SearchView</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+     <managed-bean id="__1">
+      <managed-bean-name>backing_SearchView</managed-bean-name>
+      <managed-bean-class>com.silbury.view.backing.SearchView</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+      <!--oracle-jdev-comment:managed-bean-jsp-link:1Views/SearchView.jsff-->
+    </managed-bean>
+    <view id="SearchView">
+      <page>/Views/SearchView.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>
